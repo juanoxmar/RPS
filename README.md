@@ -1,0 +1,1 @@
+A game of rock, paper, scissors played on the console against the computer. Best of 5.
