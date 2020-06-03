@@ -1,99 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="style.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Rock Paper Scissors</title>
     </head>
-    <body style="background-color: black;">
-        <h1 style="color: white;">Hit F12 and go to the console and type "game()" to start a round of games.</h1>
-        <script>
-            function game(){
-                let myScore = 0;
-                let compScore = 0;
-                
-                for(let i = 0; i < 5; i++){
-                    let playerSelection = prompt("Rock, paper, scissor?");
-                    let computerSelection = computerPlay();
-                    let gamepoint = playRound(playerSelection, computerSelection);
-                    
-                    console.log(gamepoint);
-                    
-                    switch(true){
-                        case (gamepoint.search('Win') != -1):{
-                            myScore++;
-                            break;
-                        }
-                        case (gamepoint.search('Lose') != -1):{
-                            compScore++;
-                            break;
-                        }
-                        case (gamepoint.search('Tie') != -1):{
-                            break;
-                        }
-                    }
-                    console.log(myScore + " - " + compScore);
-                }
-
-                if (myScore > compScore)
-                    console.log('You win the match ' + myScore + '-' + compScore);
-                else if (myScore < compScore)
-                    console.log('You lose the match ' + myScore + '-' + compScore);
-                else
-                    console.log('Tied match ' + myScore + '-' + compScore);
-            }
-
-            function computerPlay(){
-                let random = Math.floor( Math.random() * 10 ) + 1
-                if (random == 1)
-                    return 'r';
-                else if (random == 2)
-                    return 'p';
-                else
-                    return 's';
-            }
-
-            function playRound(playerSelection, computerSelection){
-                playerSelection = playerSelection.slice(0,1);
-                playerSelection = playerSelection.toLowerCase();
-
-                switch(true){
-                    case (playerSelection == 'r' && computerSelection == 'r'):{
-                        return "Tie! Both have Rock";
-                        break;
-                    }
-                    case (playerSelection == 'r' && computerSelection == 'p'):{
-                        return "You Lose! Paper beats Rock";
-                        break;
-                    }
-                    case (playerSelection == 'r' && computerSelection == 's'):{
-                        return "You Win! Rock beats Scissors";
-                        break;
-                    }
-                    case (playerSelection == 's' && computerSelection == 'r'):{
-                        return "You Lose! Rock beats Scissors";
-                        break;
-                    }
-                    case (playerSelection == 's' && computerSelection == 'p'):{
-                        return "You Win! Scissors beats Paper";
-                        break;
-                    }
-                    case (playerSelection == 's' && computerSelection == 's'):{
-                        return "Tie! Both have Scissors";
-                        break;
-                    }
-                    case (playerSelection == 'p' && computerSelection == 'r'):{
-                        return "You Win! Paper beats Rock";
-                        break;
-                    }
-                    case (playerSelection == 'p' && computerSelection == 'p'):{
-                        return "Tie! Both have Paper";
-                        break;
-                    }
-                    case (playerSelection == 'p' && computerSelection == 's'):{
-                        return "You Lose! Scissors beats Paper";
-                        break;
-                    }
-                }
-            }
-        </script>
+    <body>
+        <div class="intro">
+            <h1>Choose! First to five Wins!</h1>
+        </div>
+        
+        <div class="choices">
+            <button class="btn" id="rock"><i class="fa fa-hand-grab-o"></i></button>
+            <button class="btn" id="paper"><i class="fa fa-hand-paper-o"></i></button>
+            <button class="btn" id="scissor"><i class="fa fa-hand-scissors-o"></i></button>
+        </div>
+        <div class="scores">
+            Score is:
+        </div>
+        <div class="scores" id="round"></div>
+        <div class="scores" id="scores"></div>
+        <script src="script.js" type="text/javascript"></script>
     </body>
 </html>
